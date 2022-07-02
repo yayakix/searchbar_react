@@ -13,6 +13,9 @@ function App() {
 // function handleChange(e){
 //   setCurrSearch(e.target.value)
 // }
+   const filteredSearch = monster.filter((x) => {
+     return x.name.toLowerCase().includes(currsearch);
+   });
   
   return (
     <div className="App">
@@ -23,14 +26,12 @@ function App() {
         type="search"
         placeholder="search for name"
         // onChange={(e) => handleChange(e)}
-          onChange={(e) =>   {const filteredSearch = monster.filter((x) => {
-            
-          return x.name.includes(e.target.value)
-        })
-      setMonster(filteredSearch);  
+          onChange={(e) =>   {
+            setCurrSearch(e.target.value.toLowerCase())
+         
         }}
       />
-      {monster.map((x) => {
+      {filteredSearch.map((x) => {
         // console.log(x.name)
         return <h1>{x.name}</h1>;
       })}
