@@ -1,23 +1,40 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import data from './data';
 
 function App() {
+  const [monster, setMonster] = useState([])
+  useEffect(() => {
+    setMonster(data);
+    
+  }, []) 
+  const [currsearch, setCurrSearch] =  useState('')
+
+// function handleChange(e){
+//   setCurrSearch(e.target.value)
+// }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    {currsearch}
+    <br/>
+      rwar
+      <input
+        type="search"
+        placeholder="search for name"
+        // onChange={(e) => handleChange(e)}
+          onChange={(e) =>   {const filteredSearch = monster.filter((x) => {
+            
+          return x.name.includes(e.target.value)
+        })
+      setMonster(filteredSearch);  
+        }}
+      />
+      {monster.map((x) => {
+        // console.log(x.name)
+        return <h1>{x.name}</h1>;
+      })}
+
     </div>
   );
 }
