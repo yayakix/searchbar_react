@@ -12,16 +12,17 @@ function App() {
   const filteredSearch = monster.filter((x) => {
     return x.name.toLowerCase().includes(currsearch);
   });
-
+const handleChange = (e) =>{
+setCurrSearch(e.target.value.toLowerCase());
+        
+}
   return (
     <div className="App">
       <br />
       <input
         type="search"
         placeholder="search for name"
-        onChange={(e) => {
-          setCurrSearch(e.target.value.toLowerCase());
-        }}
+        onChange={handleChange}
       />
       {filteredSearch.map((x) => {
         return <h1>name: {x.name}</h1>;
